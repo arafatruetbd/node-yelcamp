@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "env-cmd -f ./config/dev.env nodemon app.js"
   },
   "author": "Arafat Hossain",
   "license": "ISC",
@@ -20,5 +20,12 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1"
+  },
+  "engines": {
+    "node": "v12.16.1"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.4"
   }
 }
