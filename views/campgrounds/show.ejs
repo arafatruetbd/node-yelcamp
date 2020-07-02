@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <div class="card p-4 bg-light mt-5">
+      <div class="card p-1 bg-light mt-5">
         <div class="card-body">
           <h4>Get In Touch</h4>
           <p>
@@ -34,7 +34,7 @@
           <h4 class="card-title"><%=campground.name%></h4>
           <small class="text-muted"
             >Written by <%=campground.author.username %><br />
-            Posted at <%= campground.createdAt.toUTCString() %></small
+            Posted at <%= moment(campground.createdAt) %></small
           >
           <hr />
           <p class="card-text"><%= campground.description %></p>
@@ -72,7 +72,7 @@
           <div class="col-md-12">
             <strong><%= comment.author.username %></strong>
             <span class="float-right"
-              >Commented at <%= comment.createdAt.toUTCString() %>
+              >Commented at <%= moment(comment.createdAt) %>
             </span>
             <p>
               <%= comment.text %>

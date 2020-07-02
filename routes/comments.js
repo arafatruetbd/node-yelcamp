@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router({ mergeParams: true });
 var Campground = require('../models/campground');
 var Comment = require('../models/comment');
+const Flash = require('../utils/Flash');
 const moment = require('moment');
 var middleware = require('../middleware');
 // ====================
@@ -14,7 +15,10 @@ router.get('/new', middleware.isLoggedIn, (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render('comments/new', { campground: campground });
+      res.render('comments/new', {
+        campground: campground,
+        flashMessage: Flash.getMessage(req),
+      });
     }
   });
 });
@@ -55,6 +59,7 @@ router.get(
         res.render('comments/edit', {
           campground_id: req.params.id,
           comment: foundComment,
+          flashMessage: Flash.getMessage(req),
         });
       }
     });
@@ -69,6 +74,7 @@ router.put('/:comment_id', middleware.checkCommentOwnership, (req, res) => {
       if (err) {
         res.redirect('back');
       } else {
+        req.flash('success', 'Comment Edited Successfully');
         res.redirect('/campgrounds/' + req.params.id);
       }
     }
